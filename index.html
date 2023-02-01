@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <title>Galería Frikisetas</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card m-3" style="width: 10rem;">
+                    <img src="img/camisetaAzul.png" class="card-img-top" alt="camisetaAzul">
+                    <div class="card-body">
+                      <h5 class="card-title">Camiseta Azul</h5>
+                      <p class="card-text">Camiseta azul de Marverl Cómics</p>
+                      <p class="price">19.99</p>
+                      <button class="btn btn-primary annadir">Añadir al Carrito</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="card m-3" style="width: 10rem;">
+                    <img src="img/CamisetaVerde.png" class="card-img-top" alt="camisetaVerde">
+                    <div class="card-body">
+                      <h5 class="card-title">Camiseta Verde</h5>
+                      <p class="card-text">Camiseta verde de SuperMario</p>
+                      <p class="price">15.99</p>
+                      <button class="btn btn-primary annadir">Añadir al Carrito</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="card m-3" style="width: 10rem;">
+                    <img src="img/camisetaRoja.png" class="card-img-top" alt="camisetaRoja">
+                    <div class="card-body">
+                      <h5 class="card-title">Camiseta Roja</h5>
+                      <p class="card-text">Camiseta roja your custom design</p>
+                      <p class="price">17.99</p>
+                      <button class="annadir btn btn-primary">Añadir al Carrito</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carrito">
+                        <i class="bi bi-cart3"></i>  CARRITO <!--No funciona el icono de carrito-->
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="carrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable"> <!--No funciona el scrollable-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="TituloCarrito">Carrito</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Numero de artículos: <span id="totalArticulos"> 0 </span></p>
+                                    <ul id="listaCompra">
+                                        
+                                    </ul>
+                                    
+                                    <p>Total: <span id="total"> 0 </span> €</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Pagar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+   
+
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/carrito.js"></script>
+
+</body>
+</html>
