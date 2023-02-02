@@ -24,9 +24,9 @@ function addToCart(elemento){
             var count=0;
             var elementoIgual="";
 
-            if(listaCompra.childElementCount!=0){
+            if(listaCompra.childElementCount!=0){//si la lista no está vacia
                 for (let i = 0; i < listaCompra.childElementCount; i++) {
-   
+                    //comprueba si hay algún artículo igual en la lista
                   if(listaCompra.children[i].textContent.match(obj.nombreArticulo)!=null){
                        elementoIgual= listaCompra.children[i]
                         count++;
@@ -34,22 +34,23 @@ function addToCart(elemento){
                   
                 } 
                 
-                if (count !=0){
+                if (count !=0){ //si hay un artículo igual en la lista
                     var arrayTexto= elementoIgual.textContent.split(" ")
                     var precioTotalArticulo= Number(arrayTexto[arrayTexto.length - 2]) + obj.price
                     
-                    if(arrayTexto.length == 4){
+                    if(arrayTexto.length == 4){ //si sólo se había añadido una vez ese artículo
                        
                         arrayTexto.push(precioTotalArticulo)
                         arrayTexto.push("€")
-                        totalPrecio.innerHTML= Number(Number(arrayTexto[2]) + obj.price);
+                        var totalPagar=Number(totalPrecio.textContent)
+                        totalPrecio.innerHTML= totalPagar + Number(obj.price);
                         var nuevoPrecio= arrayTexto.join(" ")
                         console.log(nuevoPrecio)
                         elementoIgual.innerHTML= nuevoPrecio;
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         
-                    }else{
+                    }else{ //si se había añadido más de una vez ese artículo
                         
                         arrayTexto[arrayTexto.length - 2] =  Number(arrayTexto[arrayTexto.length - 2]) + obj.price
                         var nuevoPrecio= arrayTexto.join(" ")
@@ -57,11 +58,11 @@ function addToCart(elemento){
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         var totalPagar=Number(totalPrecio.textContent)
-                        totalPrecio.innerHTML= totalPagar+ Number(obj.price);
+                        totalPrecio.innerHTML= totalPagar + Number(obj.price);
                     }
                    
 
-                }else{
+                }else{ //si no hya un artículo igual en la lista
                     var nuevoLi = document.createElement("li")
                     nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
                     listaCompra.appendChild(nuevoLi);
@@ -71,9 +72,10 @@ function addToCart(elemento){
                     totalPrecio.innerHTML= totalPagar+ Number(obj.price);
                 }
 
-            } else{
+            } else{ //si la lista está vacía
                 var nuevoLi = document.createElement("li")
                 nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
+                attachListItemButtons(nuevoLi)
                 listaCompra.appendChild(nuevoLi);
                 var numeroArticulos=Number(totalArticulos.textContent)
                 totalArticulos.innerHTML= numeroArticulos+1;
@@ -90,6 +92,22 @@ function addToCart(elemento){
 
 }
 
+function attachListItemButtons(li) {
+    let mas = document.createElement('button');
+    mas.className = 'sumarArticulo';
+    mas.textContent = '+';
+    li.appendChild(mas);
+ 
+    let menos = document.createElement('button');
+    menos.className = 'restarArticulo';
+    menos.textContent = '-';
+    li.appendChild(menos);  
+ 
+    let borrar = document.createElement('button');
+    borrar.className = 'borrarArticulos';
+    borrar.textContent = 'x';
+    li.appendChild(borrar);
+  }
 /* Create a shopping cart object
 var shoppingCart = {
     items: [],

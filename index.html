@@ -8,7 +8,7 @@
     <title>Galería Frikisetas</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container d-flex">
         <div class="row">
             <div class="col">
                 <div class="card m-3" style="width: 10rem;">
@@ -43,16 +43,16 @@
                     </div>
                   </div>
             </div>
-            <div class="col">
+                    <div class="col ">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carrito">
                         <i class="bi bi-cart3"></i>  CARRITO <!--No funciona el icono de carrito-->
                     </button>
                     
                     <!-- Modal -->
-                    <div class="modal fade" id="carrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable"> <!--No funciona el scrollable-->
-                            <div class="modal-content">
+                    <div class="modal fade justify-content-end" id="carrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable d-flex">
+                            <div class="modal-content justify-content-end">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="TituloCarrito">Carrito</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
