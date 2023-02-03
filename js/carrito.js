@@ -25,6 +25,7 @@ function addToCart(elemento){
             var elementoIgual="";
 
             if(listaCompra.childElementCount!=0){//si la lista no está vacia
+
                 for (let i = 0; i < listaCompra.childElementCount; i++) {
                     //comprueba si hay algún artículo igual en la lista
                   if(listaCompra.children[i].textContent.match(obj.nombreArticulo)!=null){
@@ -36,25 +37,41 @@ function addToCart(elemento){
                 
                 if (count !=0){ //si hay un artículo igual en la lista
                     var arrayTexto= elementoIgual.textContent.split(" ")
-                    var precioTotalArticulo= Number(arrayTexto[arrayTexto.length - 2]) + obj.price
-                    
-                    if(arrayTexto.length == 4){ //si sólo se había añadido una vez ese artículo
+                    console.log("Tamaño array inicial para entrar a IF: "+arrayTexto.length)
+                    console.log(arrayTexto)
+                    if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
                        
-                        arrayTexto.push(precioTotalArticulo)
-                        arrayTexto.push("€")
+                        var nuevoArray= [];
+                        for (let i = 0; i <= 3 ; i++) {
+                            nuevoArray.push(arrayTexto[i])
+                            
+                        }
+                        console.log ("Length 4:"+ nuevoArray.length)
+                        console.log(nuevoArray)
+                        nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
+                        nuevoArray.push("€")
+                        console.log(nuevoArray)
+                        var nuevoPrecio= nuevoArray.join(" ")
+                        elementoIgual.innerHTML= nuevoPrecio;
+                        attachListItemButtons(elementoIgual)
                         var totalPagar=Number(totalPrecio.textContent)
                         totalPrecio.innerHTML= totalPagar + Number(obj.price);
-                        var nuevoPrecio= arrayTexto.join(" ")
-                        console.log(nuevoPrecio)
-                        elementoIgual.innerHTML= nuevoPrecio;
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         
                     }else{ //si se había añadido más de una vez ese artículo
                         
-                        arrayTexto[arrayTexto.length - 2] =  Number(arrayTexto[arrayTexto.length - 2]) + obj.price
-                        var nuevoPrecio= arrayTexto.join(" ")
+                        var nuevoArray= [];
+                        for (let i = 0; i <= 5 ; i++) {
+                            nuevoArray.push(arrayTexto[i])
+                            
+                        }
+                        console.log ("Length 6:"+ nuevoArray.length)
+                        console.log(nuevoArray)
+                        nuevoArray[nuevoArray.length - 2] =  Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+                        var nuevoPrecio= nuevoArray.join(" ")
                         elementoIgual.innerHTML= nuevoPrecio;
+                        attachListItemButtons(elementoIgual)
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         var totalPagar=Number(totalPrecio.textContent)
@@ -62,9 +79,10 @@ function addToCart(elemento){
                     }
                    
 
-                }else{ //si no hya un artículo igual en la lista
+                }else{ //si no hay un artículo igual en la lista
                     var nuevoLi = document.createElement("li")
                     nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
+                    attachListItemButtons(nuevoLi)
                     listaCompra.appendChild(nuevoLi);
                     var numeroArticulos=Number(totalArticulos.textContent)
                     totalArticulos.innerHTML= numeroArticulos+1;
@@ -95,17 +113,18 @@ function addToCart(elemento){
 function attachListItemButtons(li) {
     let mas = document.createElement('button');
     mas.className = 'sumarArticulo';
-    mas.textContent = '+';
+    mas.textContent = ' +';
     li.appendChild(mas);
  
     let menos = document.createElement('button');
     menos.className = 'restarArticulo';
-    menos.textContent = '-';
+    menos.textContent = ' -';
     li.appendChild(menos);  
  
     let borrar = document.createElement('button');
     borrar.className = 'borrarArticulos';
-    borrar.textContent = 'x';
+    borrar.textContent= " Eliminar"
+    
     li.appendChild(borrar);
   }
 /* Create a shopping cart object

@@ -8,6 +8,39 @@
     <title>Galería Frikisetas</title>
 </head>
 <body>
+
+
+    <style>
+        .modal-dialog{
+            margin:0;
+        }
+        .come-from-modal .right .modal-dialog{
+            margin-top:0 important!;
+            position:fixed;
+            width:320px;
+            height: 100%;
+            transform:translate3d(0%,0,0);
+
+
+        }
+        .come-from-modal.right .modal-content{
+            height: 100%;
+            overflow-y: auto;
+            border-radius: 0px;
+        }
+        .come-from-modal.right .modal-body{
+            padding: 15px 15px 80px;
+        }
+        .come-from-modal.right.fade .modal-dialog{
+            float:right;
+            transition: opacity 0.3s linear, right 0.3s ease-out;
+
+        }
+        .come-from-modal.right.fade.in .modal-dialog{
+            right: 0;
+        }
+    </style>
+
     <div class="container d-flex">
         <div class="row">
             <div class="col">
@@ -46,11 +79,11 @@
                     <div class="col ">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carrito">
-                        <i class="bi bi-cart3"></i>  CARRITO <!--No funciona el icono de carrito-->
+                        <i class="fa fas-cart3"></i>  CARRITO <!--No funciona el icono de carrito-->
                     </button>
                     
                     <!-- Modal -->
-                    <div class="modal fade justify-content-end" id="carrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <div class="modal fade come-from-modal right " id="carrito" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-scrollable d-flex">
                             <div class="modal-content justify-content-end">
                                 <div class="modal-header">
