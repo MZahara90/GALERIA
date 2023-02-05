@@ -4,8 +4,14 @@ var listaCompra= document.getElementById("listaCompra")
 var totalArticulos= document.getElementById("totalArticulos")
 var totalPrecio= document.getElementById("total")
 
-body.addEventListener("click",comprobar);
+window.addEventListener("load",iniciar);
 
+ function iniciar(){
+  listDiv = document.querySelector('.modal-body');
+  listUl = listDiv.querySelector('ul');
+  listUl.addEventListener('click', botones); 
+  body.addEventListener("click",comprobar);
+ }
 
 function comprobar(evnt){
     var elemento=evnt.target;
@@ -13,6 +19,45 @@ function comprobar(evnt){
         addToCart(elemento);
     }
 }
+
+function botones(event){
+
+    if(event.target.className == "borrarArticulos"){
+          var boton = event.target;
+          var padreLi = boton.parentElement
+          var padreUl = padreLi.parentElement;
+          padreUl.removeChild(padreLi)
+            //TODO aqui tendré que hacer que se elimine del total
+            //que reste articulos de la cantidad de artículos
+    }
+      
+    if(event.target.className == "sumarArticulo"){
+        var boton = event.target;
+        var padre= boton.parentNode;
+        var obj= new Object();
+        var arrayTexto= padre.textContent.split(" ")
+        obj.price=Number(arrayTexto[2]);
+        console.log("Tamaño array inicial para entrar a IF: "+arrayTexto.length)
+        console.log(arrayTexto)
+
+        if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
+                       
+            anadirSegundo(obj,arrayTexto,padre);
+                        
+        }else{ //si se había añadido más de una vez ese artículo
+                        
+            anadirUnoMas(obj,arrayTexto,padre);
+        }
+            
+    }
+                 
+    if(event.target.className == "restarArticulo"){
+        var boton = event.target;
+        //TODO aquí comprobar si había uno a más de uno para restar
+    }
+}
+    
+
 
 function addToCart(elemento){
             var padre= elemento.parentNode;
@@ -39,28 +84,32 @@ function addToCart(elemento){
                     var arrayTexto= elementoIgual.textContent.split(" ")
                     console.log("Tamaño array inicial para entrar a IF: "+arrayTexto.length)
                     console.log(arrayTexto)
+
                     if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
                        
-                        var nuevoArray= [];
-                        for (let i = 0; i <= 3 ; i++) {
-                            nuevoArray.push(arrayTexto[i])
-                            
-                        }
-                        console.log ("Length 4:"+ nuevoArray.length)
-                        console.log(nuevoArray)
-                        nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
-                        nuevoArray.push("€")
-                        console.log(nuevoArray)
-                        var nuevoPrecio= nuevoArray.join(" ")
-                        elementoIgual.innerHTML= nuevoPrecio;
-                        attachListItemButtons(elementoIgual)
-                        var totalPagar=Number(totalPrecio.textContent)
-                        totalPrecio.innerHTML= totalPagar + Number(obj.price);
-                        var numeroArticulos=Number(totalArticulos.textContent)
-                        totalArticulos.innerHTML= numeroArticulos+1;
-                        
+                       // anadirSegundo(obj,arrayTexto);
+
+                            var nuevoArray= [];
+                            for (let i = 0; i <= 3 ; i++) {
+                                nuevoArray.push(arrayTexto[i])
+                                
+                            }
+                            console.log ("Length 4:"+ nuevoArray.length)
+                            console.log(nuevoArray)
+                            nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
+                            nuevoArray.push("€")
+                            console.log(nuevoArray)
+                            var nuevoPrecio= nuevoArray.join(" ")
+                            elementoIgual.innerHTML= nuevoPrecio;
+                            attachListItemButtons(elementoIgual)
+                            var totalPagar=Number(totalPrecio.textContent)
+                            totalPrecio.innerHTML= totalPagar + Number(obj.price);
+                            var numeroArticulos=Number(totalArticulos.textContent)
+                            totalArticulos.innerHTML= numeroArticulos+1;
+                                                
                     }else{ //si se había añadido más de una vez ese artículo
                         
+                      //  anadirUnoMas(obj,arrayTexto);
                         var nuevoArray= [];
                         for (let i = 0; i <= 5 ; i++) {
                             nuevoArray.push(arrayTexto[i])
@@ -75,40 +124,70 @@ function addToCart(elemento){
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         var totalPagar=Number(totalPrecio.textContent)
-                        totalPrecio.innerHTML= totalPagar + Number(obj.price);
+                        totalPrecio.innerHTML= totalPagar + Number(obj.price);  
                     }
                    
 
                 }else{ //si no hay un artículo igual en la lista
-                    var nuevoLi = document.createElement("li")
-                    nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
-                    attachListItemButtons(nuevoLi)
-                    listaCompra.appendChild(nuevoLi);
-                    var numeroArticulos=Number(totalArticulos.textContent)
-                    totalArticulos.innerHTML= numeroArticulos+1;
-                    var totalPagar=Number(totalPrecio.textContent)
-                    totalPrecio.innerHTML= totalPagar+ Number(obj.price);
+                    crearNuevaLinea(obj);
                 }
 
             } else{ //si la lista está vacía
-                var nuevoLi = document.createElement("li")
-                nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
-                attachListItemButtons(nuevoLi)
-                listaCompra.appendChild(nuevoLi);
-                var numeroArticulos=Number(totalArticulos.textContent)
-                totalArticulos.innerHTML= numeroArticulos+1;
-                var totalPagar=Number(totalPrecio.textContent)
-                totalPrecio.innerHTML= totalPagar+ Number(obj.price);
-            }
-            //si existe un elemento dentro del <ul> con el mismo nombre que lo sume
-    
-            //sino que cree un nuevo elemento <li>  en el modal con obj.nombreArticulo y obj.price 
-            //y crear el botón de + para sumar  y - para eliminar y el contador de objetos
-             
-          
-       
+                crearNuevaLinea(obj);
+            }   
 
 }
+
+
+function crearNuevaLinea(obj){
+    var nuevoLi = document.createElement("li")
+    nuevoLi.innerHTML=obj.nombreArticulo + " " + obj.price + " €";
+    attachListItemButtons(nuevoLi)
+    listaCompra.appendChild(nuevoLi);
+    var numeroArticulos=Number(totalArticulos.textContent)
+    totalArticulos.innerHTML= numeroArticulos+1;
+    var totalPagar=Number(totalPrecio.textContent)
+    totalPrecio.innerHTML= totalPagar+ Number(obj.price);
+}
+
+function anadirSegundo(obj,arrayTexto,padre){
+    
+    var nuevoArray= [];
+    for (let i = 0; i <= 3 ; i++) {
+        nuevoArray.push(arrayTexto[i])
+        
+    }
+    console.log ("Length 4:"+ nuevoArray.length)
+    console.log(nuevoArray)
+    nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
+    nuevoArray.push("€")
+    console.log(nuevoArray)
+    var nuevoPrecio= nuevoArray.join(" ")
+    padre.innerHTML= nuevoPrecio;
+    attachListItemButtons(padre)
+    var totalPagar=Number(totalPrecio.textContent)
+    totalPrecio.innerHTML= totalPagar + Number(obj.price);
+    var numeroArticulos=Number(totalArticulos.textContent)
+    totalArticulos.innerHTML= numeroArticulos+1;
+}
+
+function anadirUnoMas(obj,arrayTexto,padre){
+    var nuevoArray= [];
+    for (let i = 0; i <= 5 ; i++) {
+        nuevoArray.push(arrayTexto[i])
+        
+    }
+    console.log ("Length 6:"+ nuevoArray.length)
+    console.log(nuevoArray)
+    nuevoArray[nuevoArray.length - 2] =  Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+    var nuevoPrecio= nuevoArray.join(" ")
+    padre.innerHTML= nuevoPrecio;
+    attachListItemButtons(padre)
+    var numeroArticulos=Number(totalArticulos.textContent)
+    totalArticulos.innerHTML= numeroArticulos+1;
+    var totalPagar=Number(totalPrecio.textContent)
+    totalPrecio.innerHTML= totalPagar + Number(obj.price);  
+} 
 
 function attachListItemButtons(li) {
     let mas = document.createElement('button');
@@ -127,76 +206,3 @@ function attachListItemButtons(li) {
     
     li.appendChild(borrar);
   }
-/* Create a shopping cart object
-var shoppingCart = {
-    items: [],
-    addItem: function(name, price) {
-        this.items.push({name: name, price: price});
-    },
-    removeItem: function(name) {
-        this.items = this.items.filter(function(item) {
-            return item.name !== name;
-        });
-    },
-    total: function() {
-        return this.items.reduce(function(total, item) {
-            return total + item.price;
-        }, 0);
-    }
-}
-
-// Add some items to the cart
-//shoppingCart.addItem("Product 1", 10.99);
-//shoppingCart.addItem("Product 2", 5.99);
-
-// Print the total
-console.log(shoppingCart.total()); // 16.98
-
-// Remove an item
-shoppingCart.removeItem("Product 1");
-
-// Print the total again
-console.log(shoppingCart.total()); // 5.99
-
-
-// Render the cart in the HTML
-function renderCart() {
-    var cartList = document.getElementById("cart-list");
-    cartList.innerHTML = "";
-    for (var i = 0; i < shoppingCart.items.length; i++) {
-        var item = shoppingCart.items[i];
-        var li = document.createElement("li");
-        li.innerHTML = item.name + " - $" + item.price.toFixed(2);
-        cartList.appendChild(li);
-    }
-    var total = document.getElementById("cart-total");
-    total.innerHTML = "$" + shoppingCart.total().toFixed(2);
-}
-
-// Get all the add-to-cart buttons
-var addToCartButtons = document.getElementsByClassName("add-to-cart");
-
-// Add a click event listener to each button
-for (var i = 0; i < addToCartButtons.length; i++) {
-    var button = addToCartButtons[i];
-    button.addEventListener("click", function(event) {
-        // Get the name and price of the item from the button's data attributes
-        var name = this.getAttribute("data-name");
-        var price = parseFloat(this.getAttribute("data-price"));
-        
-        // Add the item to the cart
-        shoppingCart.addItem(name, price);
-        
-        // Re-render the cart
-        renderCart();
-    });
-}
-
-
-// Initial render
-renderCart();
-
-// Add an item to the cart
-//shoppingCart.addItem("Product 1", 10.99);
-
-*/
