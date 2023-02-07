@@ -172,7 +172,8 @@ function addToCart(elemento){
                             }
                             nuevoArray.push("x")
                             nuevoArray.push("2")
-                            nuevoArray.push(Number(nuevoArray[nuevoArray.length - 4]) + obj.price)
+                            var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 4]) + obj.price
+                            nuevoArray.push(Number(totalLineaArticulos).toFixed(2))
                             nuevoArray.push("€")
                             var nuevoPrecio= nuevoArray.join(" ")
                             elementoIgual.innerHTML= nuevoPrecio;
@@ -192,7 +193,8 @@ function addToCart(elemento){
                         }
                         
                         nuevoArray[5]=Number(nuevoArray[5])+1;
-                        nuevoArray[nuevoArray.length - 2] =  Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+                        var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+                        nuevoArray[nuevoArray.length - 2] = Number(totalLineaArticulos).toFixed(2)
                         var nuevoPrecio= nuevoArray.join(" ")
                         elementoIgual.innerHTML= nuevoPrecio;
                         attachListItemButtons(elementoIgual)
