@@ -23,12 +23,34 @@ function comprobar(evnt){
 function botones(event){
 
     if(event.target.className == "borrarArticulos"){
+
           var boton = event.target;
           var padreLi = boton.parentElement
           var padreUl = padreLi.parentElement;
-          padreUl.removeChild(padreLi)
-            //TODO aqui tendré que hacer que se elimine del total
-            //que reste articulos de la cantidad de artículos
+          var arrayContenidoLi=  padreLi.textContent.split(" ");
+
+          if(arrayContenidoLi.length==7){
+            //que se reste del precio total de la compra
+                var restarPrecio= Number(arrayContenidoLi[2])
+                totalPrecio.innerHTML=Number(totalPrecio.textContent)-restarPrecio
+            //que resten los articulos del total de artículos
+                totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+          }else{
+            //que se reste del precio total de la compra
+                var restarPrecio= Number(arrayContenidoLi[6])
+                var diferencia=Number(totalPrecio.textContent)-restarPrecio
+                if(diferencia<1){
+                    totalPrecio.innerHTML=0;
+                }else{
+                    totalPrecio.innerHTML=diferencia
+                }
+                
+            //que resten los articulos del total de artículos
+                var restarCantidad= Number(arrayContenidoLi[5])
+                totalArticulos.innerHTML=Number(totalArticulos.textContent)-restarCantidad
+          }
+          //elimino el elemento de l lista
+            padreUl.removeChild(padreLi)
     }
       
     if(event.target.className == "sumarArticulo"){
@@ -37,9 +59,7 @@ function botones(event){
         var obj= new Object();
         var arrayTexto= padre.textContent.split(" ")
         obj.price=Number(arrayTexto[2]);
-        console.log("Tamaño array inicial para entrar a IF: "+arrayTexto.length)
-        console.log(arrayTexto)
-
+        
         if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
                        
             anadirSegundo(obj,arrayTexto,padre);
@@ -53,7 +73,64 @@ function botones(event){
                  
     if(event.target.className == "restarArticulo"){
         var boton = event.target;
-        //TODO aquí comprobar si había uno a más de uno para restar
+        var padreLiBoton = boton.parentElement
+        var padreUl = padreLiBoton.parentElement;
+        var arrayContenidoLi=  padreLiBoton.textContent.split(" ");
+         //comprobar si había uno a más de uno para restar
+        if(arrayContenidoLi.length==7){// si sólo había uno
+            var nuevoArray= [];
+            for (let i = 0; i <= 3 ; i++) {
+                nuevoArray.push(arrayContenidoLi[i])
+                
+            }
+            //restar del precio total de la compra
+
+            var diferencia= Number(totalPrecio.textContent)- Number(nuevoArray[2])
+            var diferenciaRedondeada= Number(diferencia).toFixed(2)
+                if(diferencia<1){
+                    totalPrecio.innerHTML= 0
+                }else{
+                    totalPrecio.innerHTML= Number(diferenciaRedondeada);
+                }
+            //restar del total de artículos
+                totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+            
+            //elimino la línea
+                padreUl.removeChild(padreLiBoton)
+
+        }else{// si había más de uno
+
+            var nuevoArray= [];
+            for (let i = 0; i <= 7 ; i++) {
+                nuevoArray.push(arrayContenidoLi[i])
+            }
+            var precio= Number(nuevoArray[nuevoArray.length-6])
+            var cantidad= Number(nuevoArray[nuevoArray.length-3])
+            var totalPrecioLinea=Number(nuevoArray[nuevoArray.length-2])
+            //recalculo el precio total de los artículos del mismo tipo
+            nuevoArray[nuevoArray.length-2]=Number(totalPrecioLinea-precio).toFixed(2)
+            nuevoArray[nuevoArray.length-3]= cantidad-1
+            var nuevaLinea= nuevoArray.join(" ")
+            padreLiBoton.innerHTML=nuevaLinea
+            attachListItemButtons(padreLiBoton)
+
+            //lo resto del precio total de artículos del carrito
+            var diferencia= Number(totalPrecio.textContent)- precio
+            var diferenciaRedondeada= Number(diferencia).toFixed(2)
+
+            if(diferencia<1){
+                totalPrecio.innerHTML= 0
+            }else{
+                totalPrecio.innerHTML= Number(diferenciaRedondeada);
+            }
+            //lo resto de la cantidad total de artículos
+            totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+            if( nuevoArray[nuevoArray.length-3]==0){
+                padreUl.removeChild(padreLiBoton)
+            }
+
+        }
+       
     }
 }
     
@@ -82,8 +159,7 @@ function addToCart(elemento){
                 
                 if (count !=0){ //si hay un artículo igual en la lista
                     var arrayTexto= elementoIgual.textContent.split(" ")
-                    console.log("Tamaño array inicial para entrar a IF: "+arrayTexto.length)
-                    console.log(arrayTexto)
+                    
 
                     if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
                        
@@ -94,16 +170,15 @@ function addToCart(elemento){
                                 nuevoArray.push(arrayTexto[i])
                                 
                             }
-                            console.log ("Length 4:"+ nuevoArray.length)
-                            console.log(nuevoArray)
-                            nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
+                            nuevoArray.push("x")
+                            nuevoArray.push("2")
+                            nuevoArray.push(Number(nuevoArray[nuevoArray.length - 4]) + obj.price)
                             nuevoArray.push("€")
-                            console.log(nuevoArray)
                             var nuevoPrecio= nuevoArray.join(" ")
                             elementoIgual.innerHTML= nuevoPrecio;
                             attachListItemButtons(elementoIgual)
                             var totalPagar=Number(totalPrecio.textContent)
-                            totalPrecio.innerHTML= totalPagar + Number(obj.price);
+                            totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
                             var numeroArticulos=Number(totalArticulos.textContent)
                             totalArticulos.innerHTML= numeroArticulos+1;
                                                 
@@ -111,12 +186,12 @@ function addToCart(elemento){
                         
                       //  anadirUnoMas(obj,arrayTexto);
                         var nuevoArray= [];
-                        for (let i = 0; i <= 5 ; i++) {
+                        for (let i = 0; i <= 7 ; i++) {
                             nuevoArray.push(arrayTexto[i])
                             
                         }
-                        console.log ("Length 6:"+ nuevoArray.length)
-                        console.log(nuevoArray)
+                        
+                        nuevoArray[5]=Number(nuevoArray[5])+1;
                         nuevoArray[nuevoArray.length - 2] =  Number(nuevoArray[nuevoArray.length - 2]) + obj.price
                         var nuevoPrecio= nuevoArray.join(" ")
                         elementoIgual.innerHTML= nuevoPrecio;
@@ -124,7 +199,7 @@ function addToCart(elemento){
                         var numeroArticulos=Number(totalArticulos.textContent)
                         totalArticulos.innerHTML= numeroArticulos+1;
                         var totalPagar=Number(totalPrecio.textContent)
-                        totalPrecio.innerHTML= totalPagar + Number(obj.price);  
+                        totalPrecio.innerHTML=Number(totalPagar + Number(obj.price)).toFixed(2);  
                     }
                    
 
@@ -147,7 +222,7 @@ function crearNuevaLinea(obj){
     var numeroArticulos=Number(totalArticulos.textContent)
     totalArticulos.innerHTML= numeroArticulos+1;
     var totalPagar=Number(totalPrecio.textContent)
-    totalPrecio.innerHTML= totalPagar+ Number(obj.price);
+    totalPrecio.innerHTML= Number(totalPagar+ Number(obj.price)).toFixed(2);
 }
 
 function anadirSegundo(obj,arrayTexto,padre){
@@ -157,36 +232,38 @@ function anadirSegundo(obj,arrayTexto,padre){
         nuevoArray.push(arrayTexto[i])
         
     }
-    console.log ("Length 4:"+ nuevoArray.length)
-    console.log(nuevoArray)
-    nuevoArray.push(Number(nuevoArray[nuevoArray.length - 2]) + obj.price)
+    nuevoArray.push("x")
+    nuevoArray.push("2")
+    var sumaPrecioArticulos= Number(nuevoArray[nuevoArray.length - 4]) + obj.price
+    nuevoArray.push(Number(sumaPrecioArticulos.toFixed(2)))
     nuevoArray.push("€")
-    console.log(nuevoArray)
     var nuevoPrecio= nuevoArray.join(" ")
     padre.innerHTML= nuevoPrecio;
     attachListItemButtons(padre)
     var totalPagar=Number(totalPrecio.textContent)
-    totalPrecio.innerHTML= totalPagar + Number(obj.price);
+    totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
     var numeroArticulos=Number(totalArticulos.textContent)
     totalArticulos.innerHTML= numeroArticulos+1;
 }
 
 function anadirUnoMas(obj,arrayTexto,padre){
     var nuevoArray= [];
-    for (let i = 0; i <= 5 ; i++) {
+    for (let i = 0; i <= 7 ; i++) {
         nuevoArray.push(arrayTexto[i])
         
     }
-    console.log ("Length 6:"+ nuevoArray.length)
-    console.log(nuevoArray)
-    nuevoArray[nuevoArray.length - 2] =  Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+    //cantidad de producto
+    nuevoArray[nuevoArray.length - 3]=Number(nuevoArray[nuevoArray.length - 3])+1;
+    //precioTotal de los articulos
+    var sumaPrecioArticulos2= Number(nuevoArray[nuevoArray.length - 2]) + obj.price
+    nuevoArray[nuevoArray.length - 2] =  Number(sumaPrecioArticulos2.toFixed(2))
     var nuevoPrecio= nuevoArray.join(" ")
     padre.innerHTML= nuevoPrecio;
     attachListItemButtons(padre)
     var numeroArticulos=Number(totalArticulos.textContent)
     totalArticulos.innerHTML= numeroArticulos+1;
     var totalPagar=Number(totalPrecio.textContent)
-    totalPrecio.innerHTML= totalPagar + Number(obj.price);  
+    totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
 } 
 
 function attachListItemButtons(li) {
