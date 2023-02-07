@@ -32,17 +32,20 @@ function botones(event){
           if(arrayContenidoLi.length==7){
             //que se reste del precio total de la compra
                 var restarPrecio= Number(arrayContenidoLi[2])
-                totalPrecio.innerHTML=Number(totalPrecio.textContent)-restarPrecio
+                var totalCarrito=Number(totalPrecio.textContent)-restarPrecio
+                totalPrecio.innerHTML=Number(totalCarrito).toFixed(2)
             //que resten los articulos del total de artículos
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+                
           }else{
             //que se reste del precio total de la compra
                 var restarPrecio= Number(arrayContenidoLi[6])
                 var diferencia=Number(totalPrecio.textContent)-restarPrecio
+                var diferenciaRedondeo= Number(diferencia).toFixed(2)
                 if(diferencia<1){
                     totalPrecio.innerHTML=0;
                 }else{
-                    totalPrecio.innerHTML=diferencia
+                    totalPrecio.innerHTML=diferenciaRedondeo
                 }
                 
             //que resten los articulos del total de artículos
