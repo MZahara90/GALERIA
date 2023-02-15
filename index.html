@@ -5,151 +5,102 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <title>Galería Frikisetas</title>
 </head>
 <body>
 
-
-    <style>
-        .modal-dialog{
-            margin:0;
-        }
-        .come-from-modal .right .modal-dialog{
-            margin-top:0 important!;
-            position:fixed;
-            width:320px;
-            height: 100%;
-            transform:translate3d(0%,0,0);
-
-
-        }
-        .come-from-modal.right .modal-content{
-            height: 100%;
-            overflow-y: auto;
-            border-radius: 0px;
-        }
-        .come-from-modal.right .modal-body{
-            padding: 15px 15px 80px;
-        }
-        .come-from-modal.right.fade .modal-dialog{
-            float:right;
-            transition: opacity 0.3s linear, right 0.3s ease-out;
-
-        }
-        .come-from-modal.right.fade.in .modal-dialog{
-            right: 0;
-        }
-
-        input,
-        button {
-        font-size: .85em;
-        padding: .65em 1em;
-        border-radius: .3em;
-        outline: 0;
-        }
-        input {
-        border: 1px solid #dcdcdc;
-        margin-right: 1em;
-        }
-        button {
-        color: white;
-        background: #508abc;
-        border: solid 1px;
-        border-color: rgba(0, 0, 0, .1);
-        cursor: pointer;
-        }
-      
-        li button + button {
-            margin-left: 1em;
-        background: #28a9ff;
-        font-weight: bolder;
-        }
-        li button:first-child {
-            margin-left: 1em;
-        background: #52bab3;
-        font-weight: bolder;
-        }
-        li button:last-child {
-            margin-left: 1em;
-        background: #cb03037f;
-        font-weight: bolder;
-        }
-        li button {
-        font-size: .75em;
-        padding: .5em .65em;
-        }
-    </style>
-
-    <div class="container d-flex">
-        <div class="row">
-            <div class="col">
-                <div class="card m-3" style="width: 10rem;">
-                    <img src="img/camisetaAzul.png" class="card-img-top" alt="camisetaAzul">
-                    <div class="card-body">
-                      <h5 class="card-title">Camiseta Azul</h5>
-                      <p class="card-text">Camiseta azul de Marverl Cómics</p>
-                      <p class="price">19.99</p>
-                      <button class="btn btn-primary annadir">Añadir al Carrito</button>
-                    </div>
-                  </div>
+    <div class="container-fluid">
+        <div class="row justify-content-center col-12 m-0" style="z-index:1;" id="he">
+            <div class="col-12 d-flex justify-content-center">
+            <a href="#" class="col-4 col-xl-3"><img class="logo col-12 m-2" src="img/FrikisetasLogo3.1.png" alt="logo Frikisetas"></a>
             </div>
-            <div class="col">
-                <div class="card m-3" style="width: 10rem;">
-                    <img src="img/CamisetaVerde.png" class="card-img-top" alt="camisetaVerde">
-                    <div class="card-body">
-                      <h5 class="card-title">Camiseta Verde</h5>
-                      <p class="card-text">Camiseta verde de SuperMario</p>
-                      <p class="price">15.99</p>
-                      <button class="btn btn-primary annadir">Añadir al Carrito</button>
-                    </div>
-                  </div>
             </div>
-            <div class="col">
-                <div class="card m-3" style="width: 10rem;">
-                    <img src="img/camisetaRoja.png" class="card-img-top" alt="camisetaRoja">
-                    <div class="card-body">
-                      <h5 class="card-title">Camiseta Roja</h5>
-                      <p class="card-text">Camiseta roja your custom design</p>
-                      <p class="price">17.99</p>
-                      <button class="annadir btn btn-primary">Añadir al Carrito</button>
-                    </div>
-                  </div>
+        <nav class="navbar navbar-expand-lg navbar-light " id="navegacion" style="z-index:1; background-color:rgb(242, 148, 247);">
+            <div class="container-fluid">
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <a class="navbar-brand text-light" href="#">Home</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Catalogo
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Camisetas</a></li>
+                    <li><a class="dropdown-item" href="#">Sudaderas</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Puedes personalizar tu camiseta aqui</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white p-0" href="#" id="Cust">Custom</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  text-white" href="#">Ofertas</a>
+                </li>
+                <li class="nav-item"> 
+                    <a class="nav-link  text-white" href="#">Camisetas</a>
+                </li>
+                <li class="nav-item border-start">
+                <a class="nav-link text-white" href="#">Contáctanos</a>
+                </li>
+                </ul>
             </div>
-                    <div class="col ">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carrito">
-                        <i class="fa fas-cart3"></i>  CARRITO <!--No funciona el icono de carrito-->
-                    </button>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                <div id="divlogreg" style="display:flex">
+                <button  class="btn btn-block btn-outline-light d-block mx-1" id="login">Loguearse</button>
+                <a href="#" class="btn btn-warning d-block mx-1">Registrarse</a>
+                </div>
+                <a class="navbar-brand mx-2" href="#">
                     
-                    <!-- Modal -->
-                    <div class="modal fade come-from-modal right " id="carrito" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable d-flex">
-                            <div class="modal-content justify-content-end">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="TituloCarrito">Carrito</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Numero de artículos: <span id="totalArticulos"> 0 </span></p>
-                                    <ul id="listaCompra">
-                                        
-                                    </ul>
-                                    
-                                    <p>Total: <span id="total"> 0 </span> €</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Pagar</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carrito">
+                        <img src="img/carrito-de-compras.png" alt="carrito" width="30" height="28" class="d-inline-block align-text-top">
+                    </button>
+                  </a>
+                </form>
+              </div>
+        </nav>
+
+
+            <div class="main ">
+                <div class="row col-10 d-flex justify-content-center align-self-center galeria">
+            
+                    
+                </div><!--fin row-->
+              
+
+                        <div class="col ">
+                                            
+                            <!-- Modal -->
+                            <div class="modal fade come-from-modal right " id="carrito" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-scrollable d-flex">
+                                    <div class="modal-content justify-content-end">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="TituloCarrito">Carrito</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Numero de artículos: <span id="totalArticulos"> 0 </span></p>
+                                            <ul id="listaCompra">
+                                                
+                                            </ul>
+                                            
+                                            <p>Total: <span id="total"> 0 </span> €</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Pagar</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
             </div>
-        </div>
-
-
-
-
     </div>
    
 
@@ -157,6 +108,7 @@
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/carrito.js"></script>
+    <script src="js/galeria.js"></script>
 
 </body>
 </html>

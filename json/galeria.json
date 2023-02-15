@@ -1,0 +1,143 @@
+{
+    "camisetas": [
+      {
+        "id": 1,
+        "nombre": "Camiseta Browser Mario Bros",
+        "categoría": "Gaming",
+        "precio":19.99,
+        "imagenURL":"img/CamisetaVerde.png",
+        "descripcion":"Camiseta verde de algodón con dibujo de Browser de Super Mario Bros"
+      },
+      {
+        "id": 2,
+        "nombre": "Camiseta Marvel Comics Retro",
+        "categoría": "MARVEL",
+        "precio":15.99,
+        "imagenURL":"img/camiseta_azul.jpg",
+        "descripcion":"Camiseta azul de algodón con dibujo de Marvel Comics diseño retro"
+      },
+      {
+        "id": 3,
+        "nombre": "Camiseta símbolo Batman",
+        "categoría": "DC",
+        "precio":20.99,
+        "imagenURL":"img/camiseta_batman.jpg",
+        "descripcion":"Camiseta gris de algodón con logo de Batman degradado"
+      },
+      {
+        "id": 4,
+        "nombre": "Camiseta Suicide Squad",
+        "categoría": "DC",
+        "precio":19.99,
+        "imagenURL":"img/camiseta_suicide_squad.jpg",
+        "descripcion":"Camiseta negra de algodón con letras de Suicide Squad del universo DC"
+      },
+      {
+        "id": 5,
+        "nombre": "Camiseta Superman",
+        "categoría": "DC",
+        "precio":18.99,
+        "imagenURL":"img/camiseta-superman.jpg",
+        "descripcion":"Camiseta azul de algodón con símbolo de Superman de DC"
+      },
+      {
+        "id": 6,
+        "nombre": "Camiseta Alianza World of Warcraft",
+        "categoría": "Gaming",
+        "precio":21.99,
+        "imagenURL":"img/camiseta-alianza-warcraft.jpg",
+        "descripcion":"Camiseta negra de algodón con dibujo del logo de la Alianza de World of Warcraft"
+      },
+      {
+        "id": 7,
+        "nombre": "Camiseta Rick y Morty Calavera",
+        "categoría": "cineSeries",
+        "precio":19.99,
+        "imagenURL":"img/camiseta-rick-y-morty-skull.jpg",
+        "descripcion":"Camiseta amarilla con dibujo de calavera de la serie Rick y Morty"
+      },
+      {
+        "id": 8,
+        "nombre": "Camiseta Elementos Zelda",
+        "categoría": "Gaming",
+        "precio":19.99,
+        "imagenURL":"img/zelda.jpg",
+        "descripcion":"Camiseta negra de algodón con dibujo de los elementos del videojuego Zelda"
+      },
+      {
+        "id": 9,
+        "nombre": "Camiseta Nintendo Nes",
+        "categoría": "Gaming",
+        "precio":23.99,
+        "imagenURL":"img/camiseta-nintendo-nes.jpg",
+        "descripcion":"Camiseta blanca de algodón con detalle de cuello rojo con mando de Nintendo Nes vintage"
+      },
+      {
+        "id": 10,
+        "nombre": "Camiseta Hulk",
+        "categoría": "MARVEL",
+        "precio":18.99,
+        "imagenURL":"img/camiseta-hulk.jpg",
+        "descripcion":"Camiseta verde de algodón con la cara de Hulk de Avengers"
+      },
+      {
+        "id": 11,
+        "nombre": "Camiseta DJ Yoda",
+        "categoría": "cineSeries",
+        "precio":18.99,
+        "imagenURL":"img/camiseta-yoda.jpg",
+        "descripcion":"Camiseta gris de algodón DJ Yoda Star Wars"
+      },
+      {
+        "id": 12,
+        "nombre": "Camiseta Wakanda Forever",
+        "categoría": "MARVEL",
+        "precio":22.99,
+        "imagenURL":"img/camiseta-wakanda.jpg",
+        "descripcion":"Camiseta negra de algodón con dibujo Black Panther Wakanda Forever"
+      },
+      {
+        "id": 13,
+        "nombre": "Camiseta Casa Lannister",
+        "categoría": "cineSeries",
+        "precio":20.99,
+        "imagenURL":"img/camiseta-casa-lannister.jpg",
+        "descripcion":"Camiseta granate de algodón con emblema de la Casa Lanniester de Juego de Tronos"
+      },
+      {
+        "id": 14,
+        "nombre": "Camiseta Luciérnagas The Last of Us",
+        "categoría": "Gaming",
+        "precio":18.99,
+        "imagenURL":"img/camiseta_the_last_of_us.jpg",
+        "descripcion":"Camiseta negra de algodón con logo luciérnagas The Last of Us"
+      },
+      {
+        "id": 15,
+        "nombre": "Camiseta cuatro casas de Hogwarts",
+        "categoría": "cineSeries",
+        "precio":19.99,
+        "imagenURL":"img/camiseta-hogwarts.jpg",
+        "descripcion":"Camiseta negra de algodón con los escudos de las cuatro casas de Hogwarts de Harry Potter"
+      },
+      {
+        "id": 16,
+        "nombre": "Camiseta Central Perk",
+        "categoría": "cineSeries",
+        "precio":19.99,
+        "imagenURL":"img/camiseta-central-perk.jpg",
+        "descripcion":"Camiseta gris de algodón con el rótulo del Central Perk café de Friends"
+      }
+
+
+    ],
+
+    "sudaderas": [
+       
+      ],
+
+      "masVendidos": [
+       
+      ]
+    
+  }
