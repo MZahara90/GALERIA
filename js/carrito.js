@@ -61,14 +61,21 @@ function botones(event){
         var padre= boton.parentNode;
         var obj= new Object();
         var arrayTexto= padre.textContent.split(" ")
-        obj.price=Number(arrayTexto[2]);
         
-        if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
-                       
+        
+        
+        var arrayNombre=  padre.textContent.split(":");
+        obj.nombreArticulo= arrayNombre[0]
+
+        var text= arrayTexto.join(" ")
+
+        if(text.length - obj.nombreArticulo.length==22){ //si sólo se había añadido una vez ese artículo
+            obj.price=Number(arrayTexto[arrayTexto.length-5]);
             anadirSegundo(obj,arrayTexto,padre);
                         
         }else{ //si se había añadido más de una vez ese artículo
-                        
+            obj.price=Number(arrayTexto[arrayTexto.length-5]);
+            console.log(obj.price)
             anadirUnoMas(obj,arrayTexto,padre);
         }
             
@@ -138,12 +145,15 @@ function botones(event){
 }
     
 
+//TODO ya funcionan los añadir desde la página y sumar desde el carrito
+//TODO hay que solucionar el restar y el eliminar 
+
 
 function addToCart(elemento){
             var padre= elemento.parentNode;
             var obj= new Object();
 
-            obj.nombreArticulo=padre.firstElementChild.textContent
+            obj.nombreArticulo=padre.firstElementChild.textContent+":"
             obj.price=Number(padre.lastElementChild.previousElementSibling.textContent)
             
             var count=0;
@@ -153,23 +163,25 @@ function addToCart(elemento){
 
                 for (let i = 0; i < listaCompra.childElementCount; i++) {
                     //comprueba si hay algún artículo igual en la lista
-                  if(listaCompra.children[i].textContent.match(obj.nombreArticulo)!=null){
+                    if(listaCompra.children[i].textContent.match(obj.nombreArticulo)!=null){
                        elementoIgual= listaCompra.children[i]
                         count++;
+
                     }
                   
                 } 
                 
                 if (count !=0){ //si hay un artículo igual en la lista
                     var arrayTexto= elementoIgual.textContent.split(" ")
+                   
                     
 
-                    if(arrayTexto.length == 7){ //si sólo se había añadido una vez ese artículo
-                       
+                    if(elementoIgual.textContent.length-obj.nombreArticulo.length==21){ //si sólo se había añadido una vez ese artículo
+                    
                        // anadirSegundo(obj,arrayTexto);
 
                             var nuevoArray= [];
-                            for (let i = 0; i <= 3 ; i++) {
+                            for (let i = 0; i < arrayTexto.length-3 ; i++) {
                                 nuevoArray.push(arrayTexto[i])
                                 
                             }
@@ -188,14 +200,14 @@ function addToCart(elemento){
                                                 
                     }else{ //si se había añadido más de una vez ese artículo
                         
-                      //  anadirUnoMas(obj,arrayTexto);
+                      //anadirUnoMas(obj,arrayTexto);
                         var nuevoArray= [];
-                        for (let i = 0; i <= 7 ; i++) {
+                        for (let i = 0; i < arrayTexto.length-3 ; i++) {
                             nuevoArray.push(arrayTexto[i])
                             
                         }
                         
-                        nuevoArray[5]=Number(nuevoArray[5])+1;
+                        nuevoArray[nuevoArray.length-3]=Number(nuevoArray[nuevoArray.length-3])+1;
                         var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 2]) + obj.price
                         nuevoArray[nuevoArray.length - 2] = Number(totalLineaArticulos).toFixed(2)
                         var nuevoPrecio= nuevoArray.join(" ")
@@ -233,7 +245,7 @@ function crearNuevaLinea(obj){
 function anadirSegundo(obj,arrayTexto,padre){
     
     var nuevoArray= [];
-    for (let i = 0; i <= 3 ; i++) {
+    for (let i = 0; i< arrayTexto.length-3 ; i++) {
         nuevoArray.push(arrayTexto[i])
         
     }
@@ -253,7 +265,7 @@ function anadirSegundo(obj,arrayTexto,padre){
 
 function anadirUnoMas(obj,arrayTexto,padre){
     var nuevoArray= [];
-    for (let i = 0; i <= 7 ; i++) {
+    for (let i = 0; i < arrayTexto.length-3 ; i++) {
         nuevoArray.push(arrayTexto[i])
         
     }
@@ -269,7 +281,7 @@ function anadirUnoMas(obj,arrayTexto,padre){
     totalArticulos.innerHTML= numeroArticulos+1;
     var totalPagar=Number(totalPrecio.textContent)
     totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
-} 
+}
 
 function attachListItemButtons(li) {
     let mas = document.createElement('button');

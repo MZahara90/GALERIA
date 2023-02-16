@@ -21,7 +21,7 @@ const mainDiv = document.querySelector('.galeria');
 
     const divCard = document.createElement('div');
     divCard.className="card m-3"
-    divCard.style="width: 11rem; height: 24rem;"
+    divCard.style="width: 12rem; height: 24rem;"
     divCol.appendChild(divCard)
 
     var imagen=  document.createElement('img');
