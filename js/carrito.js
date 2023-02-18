@@ -22,24 +22,32 @@ function comprobar(evnt){
 
 function botones(event){
 
-    if(event.target.className == "borrarArticulos"){
+    if(event.target.className == "borrarArticulos fa fa-trash"){
 
           var boton = event.target;
           var padreLi = boton.parentElement
           var padreUl = padreLi.parentElement;
           var arrayContenidoLi=  padreLi.textContent.split(" ");
+         
+          var obj= new Object();
+          var arrayNombre=  padreLi.textContent.split(":");
+          obj.nombreArticulo= arrayNombre[0]
+  
+          var text= arrayContenidoLi.join(" ")
 
-          if(arrayContenidoLi.length==7){
+          
+          if(text.length - obj.nombreArticulo.length==13){//si sólo había uno
             //que se reste del precio total de la compra
-                var restarPrecio= Number(arrayContenidoLi[2])
+
+                var restarPrecio= Number(arrayContenidoLi[arrayContenidoLi.length-4])
                 var totalCarrito=Number(totalPrecio.textContent)-restarPrecio
                 totalPrecio.innerHTML=Number(totalCarrito).toFixed(2)
             //que resten los articulos del total de artículos
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
                 
-          }else{
+          }else{ //si había más de uno de ese objeto
             //que se reste del precio total de la compra
-                var restarPrecio= Number(arrayContenidoLi[6])
+                var restarPrecio= Number(arrayContenidoLi[arrayContenidoLi.length-4])
                 var diferencia=Number(totalPrecio.textContent)-restarPrecio
                 var diferenciaRedondeo= Number(diferencia).toFixed(2)
                 if(diferencia<1){
@@ -49,7 +57,7 @@ function botones(event){
                 }
                 
             //que resten los articulos del total de artículos
-                var restarCantidad= Number(arrayContenidoLi[5])
+                var restarCantidad= Number(arrayContenidoLi[arrayContenidoLi.length-5])
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-restarCantidad
           }
           //elimino el elemento de l lista
@@ -69,13 +77,14 @@ function botones(event){
 
         var text= arrayTexto.join(" ")
 
-        if(text.length - obj.nombreArticulo.length==22){ //si sólo se había añadido una vez ese artículo
-            obj.price=Number(arrayTexto[arrayTexto.length-5]);
+        if(text.length - obj.nombreArticulo.length==13){ //si sólo se había añadido una vez ese artículo
+           
+            obj.price=Number(arrayTexto[arrayTexto.length-4]);
+
             anadirSegundo(obj,arrayTexto,padre);
                         
         }else{ //si se había añadido más de una vez ese artículo
-            obj.price=Number(arrayTexto[arrayTexto.length-5]);
-            console.log(obj.price)
+            obj.price=Number(arrayTexto[arrayTexto.length-7]);
             anadirUnoMas(obj,arrayTexto,padre);
         }
             
@@ -86,16 +95,23 @@ function botones(event){
         var padreLiBoton = boton.parentElement
         var padreUl = padreLiBoton.parentElement;
         var arrayContenidoLi=  padreLiBoton.textContent.split(" ");
-         //comprobar si había uno a más de uno para restar
-        if(arrayContenidoLi.length==7){// si sólo había uno
+        
+         var obj= new Object();
+         var arrayNombre=  padreLiBoton.textContent.split(":");
+        obj.nombreArticulo= arrayNombre[0]
+
+        var text= arrayContenidoLi.join(" ")
+        //comprobar si había uno a más de uno para restar
+        if(text.length - obj.nombreArticulo.length==13){// si sólo había uno
             var nuevoArray= [];
-            for (let i = 0; i <= 3 ; i++) {
+
+            for (let i = 0; i < arrayContenidoLi.length-2 ; i++) {
                 nuevoArray.push(arrayContenidoLi[i])
                 
             }
-            //restar del precio total de la compra
 
-            var diferencia= Number(totalPrecio.textContent)- Number(nuevoArray[2])
+            //restar del precio total de la compra
+            var diferencia= Number(totalPrecio.textContent)- Number(nuevoArray[nuevoArray.length-2])
             var diferenciaRedondeada= Number(diferencia).toFixed(2)
                 if(diferencia<1){
                     totalPrecio.innerHTML= 0
@@ -111,10 +127,11 @@ function botones(event){
         }else{// si había más de uno
 
             var nuevoArray= [];
-            for (let i = 0; i <= 7 ; i++) {
+
+            for (let i = 0; i < arrayContenidoLi.length-2  ; i++) {
                 nuevoArray.push(arrayContenidoLi[i])
             }
-            var precio= Number(nuevoArray[nuevoArray.length-6])
+            var precio= Number(nuevoArray[nuevoArray.length-5])
             var cantidad= Number(nuevoArray[nuevoArray.length-3])
             var totalPrecioLinea=Number(nuevoArray[nuevoArray.length-2])
             //recalculo el precio total de los artículos del mismo tipo
@@ -174,12 +191,9 @@ function addToCart(elemento){
                 if (count !=0){ //si hay un artículo igual en la lista
                     var arrayTexto= elementoIgual.textContent.split(" ")
                    
+                   
+                    if(elementoIgual.textContent.length-obj.nombreArticulo.length==12){ //si sólo se había añadido una vez ese artículo
                     
-
-                    if(elementoIgual.textContent.length-obj.nombreArticulo.length==21){ //si sólo se había añadido una vez ese artículo
-                    
-                       // anadirSegundo(obj,arrayTexto);
-
                             var nuevoArray= [];
                             for (let i = 0; i < arrayTexto.length-3 ; i++) {
                                 nuevoArray.push(arrayTexto[i])
@@ -187,7 +201,7 @@ function addToCart(elemento){
                             }
                             nuevoArray.push("x")
                             nuevoArray.push("2")
-                            var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 4]) + obj.price
+                            var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 3]) + obj.price
                             nuevoArray.push(Number(totalLineaArticulos).toFixed(2))
                             nuevoArray.push("€")
                             var nuevoPrecio= nuevoArray.join(" ")
@@ -199,14 +213,13 @@ function addToCart(elemento){
                             totalArticulos.innerHTML= numeroArticulos+1;
                                                 
                     }else{ //si se había añadido más de una vez ese artículo
-                        
                       //anadirUnoMas(obj,arrayTexto);
                         var nuevoArray= [];
-                        for (let i = 0; i < arrayTexto.length-3 ; i++) {
+                        for (let i = 0; i < arrayTexto.length-2 ; i++) {
                             nuevoArray.push(arrayTexto[i])
                             
                         }
-                        
+
                         nuevoArray[nuevoArray.length-3]=Number(nuevoArray[nuevoArray.length-3])+1;
                         var totalLineaArticulos= Number(nuevoArray[nuevoArray.length - 2]) + obj.price
                         nuevoArray[nuevoArray.length - 2] = Number(totalLineaArticulos).toFixed(2)
@@ -244,6 +257,7 @@ function crearNuevaLinea(obj){
 
 function anadirSegundo(obj,arrayTexto,padre){
     
+    
     var nuevoArray= [];
     for (let i = 0; i< arrayTexto.length-3 ; i++) {
         nuevoArray.push(arrayTexto[i])
@@ -251,7 +265,7 @@ function anadirSegundo(obj,arrayTexto,padre){
     }
     nuevoArray.push("x")
     nuevoArray.push("2")
-    var sumaPrecioArticulos= Number(nuevoArray[nuevoArray.length - 4]) + obj.price
+    var sumaPrecioArticulos= Number(nuevoArray[nuevoArray.length - 3]) + obj.price
     nuevoArray.push(Number(sumaPrecioArticulos.toFixed(2)))
     nuevoArray.push("€")
     var nuevoPrecio= nuevoArray.join(" ")
@@ -264,13 +278,14 @@ function anadirSegundo(obj,arrayTexto,padre){
 }
 
 function anadirUnoMas(obj,arrayTexto,padre){
+
     var nuevoArray= [];
-    for (let i = 0; i < arrayTexto.length-3 ; i++) {
+    for (let i = 0; i < arrayTexto.length-2 ; i++) {
         nuevoArray.push(arrayTexto[i])
         
     }
     //cantidad de producto
-    nuevoArray[nuevoArray.length - 3]=Number(nuevoArray[nuevoArray.length - 3])+1;
+     nuevoArray[nuevoArray.length - 3]=Number(nuevoArray[nuevoArray.length - 3])+1;
     //precioTotal de los articulos
     var sumaPrecioArticulos2= Number(nuevoArray[nuevoArray.length - 2]) + obj.price
     nuevoArray[nuevoArray.length - 2] =  Number(sumaPrecioArticulos2.toFixed(2))
@@ -295,8 +310,10 @@ function attachListItemButtons(li) {
     li.appendChild(menos);  
  
     let borrar = document.createElement('button');
-    borrar.className = 'borrarArticulos';
-    borrar.textContent= " Eliminar"
-    
+    borrar.className = 'borrarArticulos fa fa-trash';
+    //borrar.className= "<i class='fa fa-trash'></i>"
+   // let icono = document.createElement('i');
+   // icono.className= 'fa fa-trash'
+   // borrar.appendChild(icono)
     li.appendChild(borrar);
   }
