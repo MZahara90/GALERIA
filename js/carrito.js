@@ -3,6 +3,9 @@ var body= document.getElementsByTagName("body")[0];
 var listaCompra= document.getElementById("listaCompra")
 var totalArticulos= document.getElementById("totalArticulos")
 var totalPrecio= document.getElementById("total")
+var carritoBoton= document.getElementById("carritoBtn")
+var carritoCount= document.getElementById("carritoCount")
+
 
 window.addEventListener("load",iniciar);
 
@@ -16,7 +19,12 @@ window.addEventListener("load",iniciar);
 function comprobar(evnt){
     var elemento=evnt.target;
     if(elemento.textContent === "Añadir al Carrito"){
+        carritoBoton.className="d-inline-block align-text-top animate__animated animate__rubberBand";
         addToCart(elemento);
+        setTimeout(() => {
+            carritoBoton.className="d-inline-block align-text-top";
+          }, "1000")
+        
     }
 }
 
@@ -44,7 +52,7 @@ function botones(event){
                 totalPrecio.innerHTML=Number(totalCarrito).toFixed(2)
             //que resten los articulos del total de artículos
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
-                
+                carritoCount.innerHTML=totalArticulos.textContent
           }else{ //si había más de uno de ese objeto
             //que se reste del precio total de la compra
                 var restarPrecio= Number(arrayContenidoLi[arrayContenidoLi.length-4])
@@ -59,6 +67,7 @@ function botones(event){
             //que resten los articulos del total de artículos
                 var restarCantidad= Number(arrayContenidoLi[arrayContenidoLi.length-5])
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-restarCantidad
+                carritoCount.innerHTML=totalArticulos.textContent
           }
           //elimino el elemento de l lista
             padreUl.removeChild(padreLi)
@@ -120,6 +129,7 @@ function botones(event){
                 }
             //restar del total de artículos
                 totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+                carritoCount.innerHTML=totalArticulos.textContent
             
             //elimino la línea
                 padreUl.removeChild(padreLiBoton)
@@ -152,6 +162,7 @@ function botones(event){
             }
             //lo resto de la cantidad total de artículos
             totalArticulos.innerHTML=Number(totalArticulos.textContent)-1
+            carritoCount.innerHTML=totalArticulos.textContent
             if( nuevoArray[nuevoArray.length-3]==0){
                 padreUl.removeChild(padreLiBoton)
             }
@@ -211,6 +222,7 @@ function addToCart(elemento){
                             totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
                             var numeroArticulos=Number(totalArticulos.textContent)
                             totalArticulos.innerHTML= numeroArticulos+1;
+                            carritoCount.innerHTML=totalArticulos.textContent
                                                 
                     }else{ //si se había añadido más de una vez ese artículo
                       //anadirUnoMas(obj,arrayTexto);
@@ -230,6 +242,7 @@ function addToCart(elemento){
                         totalArticulos.innerHTML= numeroArticulos+1;
                         var totalPagar=Number(totalPrecio.textContent)
                         totalPrecio.innerHTML=Number(totalPagar + Number(obj.price)).toFixed(2);  
+                        carritoCount.innerHTML=totalArticulos.textContent
                     }
                    
 
@@ -253,6 +266,7 @@ function crearNuevaLinea(obj){
     totalArticulos.innerHTML= numeroArticulos+1;
     var totalPagar=Number(totalPrecio.textContent)
     totalPrecio.innerHTML= Number(totalPagar+ Number(obj.price)).toFixed(2);
+    carritoCount.innerHTML=totalArticulos.textContent
 }
 
 function anadirSegundo(obj,arrayTexto,padre){
@@ -275,6 +289,7 @@ function anadirSegundo(obj,arrayTexto,padre){
     totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
     var numeroArticulos=Number(totalArticulos.textContent)
     totalArticulos.innerHTML= numeroArticulos+1;
+    carritoCount.innerHTML=totalArticulos.textContent
 }
 
 function anadirUnoMas(obj,arrayTexto,padre){
@@ -294,6 +309,7 @@ function anadirUnoMas(obj,arrayTexto,padre){
     attachListItemButtons(padre)
     var numeroArticulos=Number(totalArticulos.textContent)
     totalArticulos.innerHTML= numeroArticulos+1;
+    carritoCount.innerHTML=totalArticulos.textContent
     var totalPagar=Number(totalPrecio.textContent)
     totalPrecio.innerHTML= Number(totalPagar + Number(obj.price)).toFixed(2);
 }

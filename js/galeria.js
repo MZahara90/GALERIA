@@ -17,10 +17,10 @@ const mainDiv = document.querySelector('.galeria');
   function createCard(obj){
          
     const divCol = document.createElement('div');
-    divCol.className="col"
+    divCol.className="col-6 col-sm-4 col-md-3 p-0 d-flex justify-content-center"
 
     const divCard = document.createElement('div');
-    divCard.className="card m-3"
+    divCard.className="card ms-1 mt-1"
     divCard.style="width: 12rem; height: 24rem;"
     divCol.appendChild(divCard)
 

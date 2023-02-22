@@ -7,6 +7,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>Galería Frikisetas</title>
 </head>
 <body>
@@ -53,31 +54,35 @@
                 </ul>
             </div>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                <div id="divlogreg" style="display:flex">
-                <button  class="btn btn-block btn-outline-light d-block mx-1" id="login">Loguearse</button>
-                <a href="#" class="btn btn-warning d-block mx-1">Registrarse</a>
-                </div>
-                <a class="navbar-brand mx-2" href="#">
-                    <!-- IMPORTANTE EL BOTÓN DE CARRITO PARA EL MODAL--> 
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#carrito">
-                        <img src="img/carrito-de-compras.png" alt="carrito" width="30" height="28" class="d-inline-block align-text-top">
-                    </button>
-                  </a>
-                </form>
-              </div>
+                   
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                    <div id="divlogreg" style="display:flex">
+                    <button  class="btn btn-block btn-outline-light d-block mx-1" id="login">Loguearse</button>
+                    <a href="#" class="btn btn-warning d-block mx-1">Registrarse</a>
+                    </div>
+                    <a class="navbar-brand mx-2" href="#">
+                        <!-- IMPORTANTE EL BOTÓN DE CARRITO PARA EL MODAL--> 
+                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#carrito">
+                            <img src="img/carrito-de-compras.png" id="carritoBtn" alt="carrito" width="30" height="28" class="d-inline-block align-text-top">
+                            <span id="carritoCount" class="position-relative badge rounded-pill bg-danger">
+                                0</span>
+                        </button>
+                    </a>
+                    </div>
+            </form>
+            </div>
         </nav>
     <!-- Hasta aquí el header--> 
 
 
-            <div class="main ">
-                <div class="row col-10 d-flex justify-content-center align-self-center galeria">
+            <div class="main d-flex justify-content-center">
+                <div class="row col col-sm-11 d-flex galeria">
             
                     
                 </div><!--fin row-->
               
 
-                        <div class="col ">
+                        
                                             
                             <!-- Modal -->
                             <div class="modal fade come-from-modal right " id="carrito" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -102,7 +107,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        
             </div>
     </div>
    
