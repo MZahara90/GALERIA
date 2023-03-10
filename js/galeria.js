@@ -70,7 +70,7 @@ const mainDiv = document.querySelector('.galeria');
     function mostrarCategoria(e){
       const boton= e.target;
 
-      var URL="http://localhost:3000/galeria"
+      var URL="https://my-json-server.typicode.com/Xeadnor/ApiFalsa/galeria"
             async function obtenerJSON(url){
                 return await new Promise ( (resolve, reject)=>{
                     const xhr= new XMLHttpRequest();
@@ -164,7 +164,8 @@ const mainDiv = document.querySelector('.galeria');
 
 
 
- const getCamisetas = "http://localhost:3000/galeria";
+ const getCamisetas = "https://my-json-server.typicode.com/Xeadnor/ApiFalsa/galeria"
+
 
   async function request(url) {
      
