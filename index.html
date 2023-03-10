@@ -15,84 +15,112 @@
     <div class="container-fluid p-0">
         <div class="row justify-content-center col-12 m-0" style="z-index:1;" id="he">
             <div class="col-12 d-flex justify-content-center">
-            <a href="#" class="col-4 col-xl-3"><img class="logo col-12 m-2" src="img/FrikisetasLogo3.1.png" alt="logo Frikisetas"></a>
+                <a href="#" class="col-4 col-xl-3"><img class="logo col-12 m-2" src="img/FrikisetasLogo3.1.png" alt="logo Frikisetas"></a>
             </div>
-            </div>
-        <nav class="navbar navbar-expand-lg navbar-light " id="navegacion" style="z-index:1; background-color:rgb(95, 138, 247);">
-            <div class="container-fluid">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <a class="navbar-brand text-light" href="#">Home</a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Catalogo
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Camisetas</a></li>
-                    <li><a class="dropdown-item" href="#">Sudaderas</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="#">Puedes personalizar tu camiseta aqui</a></li>
+        </div>
+        <div class="row col-12 m-0">
+            <nav class="navbar navbar-expand-lg navbar-light " id="navegacion" style="z-index:1; background-color:rgb(95, 138, 247);">
+                <div class="container-fluid">
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <a class="navbar-brand text-light" href="#">Home</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catalogo
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Camisetas</a></li>
+                        <li><a class="dropdown-item" href="#">Sudaderas</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Puedes personalizar tu camiseta aqui</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white p-0" href="#" id="Cust">Custom</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  text-white" href="#">Ofertas</a>
+                    </li>
+                    <li class="nav-item"> 
+                        <a class="nav-link  text-white" href="#">Camisetas</a>
+                    </li>
+                    <li class="nav-item border-start">
+                        <a class="nav-link  text-white" href="#">Contacto</a>
+                    <!-- <a class="nav-link text-white" href="#">Contáctanos</a> -->
+                    </li>
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white p-0" href="#" id="Cust">Custom</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link  text-white" href="#">Ofertas</a>
-                </li>
-                <li class="nav-item"> 
-                    <a class="nav-link  text-white" href="#">Camisetas</a>
-                </li>
-                <li class="nav-item border-start">
-                    <a class="nav-link  text-white" href="#">Contacto</a>
-                <!-- <a class="nav-link text-white" href="#">Contáctanos</a> -->
-                </li>
-                </ul>
-            </div>
-            <form class="d-flex">
-                   
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-                    <div id="divlogreg" style="display:flex">
-                    <button  class="btn btn-block btn-outline-light d-block mx-1" id="login">Loguearse</button>
-                    <a href="#" class="btn btn-warning d-block mx-1">Registrarse</a>
-                    </div>
-                    <a class="navbar-brand mx-2" href="#">
-                        <!-- IMPORTANTE EL BOTÓN DE CARRITO PARA EL MODAL Y EL BADGE!! --> 
-                        <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#carrito">
-                            <img src="img/carrito-de-compras.png" id="carritoBtn" alt="carrito" width="30" height="28" class="d-inline-block align-text-top">
-                            <span id="carritoCount" class="position-relative badge rounded-pill bg-danger">
-                                0</span>
-                        </button>
-                    </a>
-                    </div>
-            </form>
-            </div>
-        </nav>
+                </div>
+                <form class="d-flex">
+                    
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+                        <div id="divlogreg" style="display:flex">
+                        <button  class="btn btn-block btn-outline-light d-block mx-1" id="login">Loguearse</button>
+                        <a href="#" class="btn btn-warning d-block mx-1">Registrarse</a>
+                        </div>
+                        <a class="navbar-brand mx-2" href="#">
+                            <!-- IMPORTANTE EL BOTÓN DE CARRITO PARA EL MODAL Y EL BADGE!! --> 
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#carrito">
+                                <img src="img/carrito-de-compras.png" id="carritoBtn" alt="carrito" width="30" height="28" class="d-inline-block align-text-top">
+                                <span id="carritoCount" class="position-relative badge rounded-pill bg-danger">
+                                    0</span>
+                            </button>
+                        </a>
+                        </div>
+                </form>
+                </div>
+            </nav>
+        </div>
 <!-- --------Hasta aquí el header-------------- --> 
 
 
-            <div class="main d-flex justify-content-center">
-                <div class="col col-sm-2 bg-light">
-                    <nav class="navbar mt-4">
-                        <div class="container-fluid ">
-                            <a class="col-12 nav-link disabled fw-bolder">Categorías</a>
-                            <a class="col-12 nav-link" id="todo" href="#">&nbsp;&nbsp;Ver todo</a>
-                            <a class="col-12 nav-link" id="MARVEL" href="#">&nbsp;&nbsp;MARVEL</a>
-                            <a class="col-12 nav-link" id="DC" href="#">&nbsp;&nbsp;DC</a>
-                            <a class="col-12 nav-link" id="Gaming" href="#">&nbsp;&nbsp;Gaming</a>
-                            <a class="col-12 nav-link" id="CineSeries" href="#">&nbsp;&nbsp;Cine & Series</a>
-                            
-                        </div>
-                    </nav>
+            <div class="row col-12 main d-flex justify-content-center">
+                <div class="col-12 d-block d-sm-none ms-4 pt-2 pb-2 ps-3 mb-2 bg-light ">
+                    <div class="col">
+                    <!-- filtro de categorías sólo de tamaño xs-->
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Categorías
+                                </a>
+                                <ul class="dropdown-menu">
+                                    
+                                    <li><a class="col-12 nav-link" id="todo" href="#">&nbsp;&nbsp;Ver todo</a></li>
+                                    <li><a class="col-12 nav-link" id="MARVEL" href="#">&nbsp;&nbsp;MARVEL</a></li>
+                                    <li><a class="col-12 nav-link" id="DC" href="#">&nbsp;&nbsp;DC</a></li>
+                                    <li><a class="col-12 nav-link" id="Gaming" href="#">&nbsp;&nbsp;Gaming</a></li>
+                                    <li><a class="col-12 nav-link" id="CineSeries" href="#">&nbsp;&nbsp;Cine & Series</a></li>
+                                
+                                </ul>
+                            </div>
+                    </div>
                 </div>
-                <div class="row col col-sm-10 d-flex galeria">
-            
-                    
+
+                <div class="row col-12 m-0 p-0">
+                    <div class="col d-none col-sm-2 d-sm-block bg-light">
+                        <nav class="navbar mt-4"><!-- filtro de categorías para el resto de tamaños-->
+                            <div class="container-fluid ">
+                                <a class="col-12 nav-link disabled fw-bolder">Categorías</a>
+                                <a class="col-12 nav-link" id="todo" href="#">&nbsp;&nbsp;Ver todo</a>
+                                <a class="col-12 nav-link" id="MARVEL" href="#">&nbsp;&nbsp;MARVEL</a>
+                                <a class="col-12 nav-link" id="DC" href="#">&nbsp;&nbsp;DC</a>
+                                <a class="col-12 nav-link" id="Gaming" href="#">&nbsp;&nbsp;Gaming</a>
+                                <a class="col-12 nav-link" id="CineSeries" href="#">&nbsp;&nbsp;Cine & Series</a>
+                                
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="col-12 col-sm-10 p-0">
+                        <div class="row col col-sm-10 d-flex galeria">
+                    </div>
+                        
                 </div><!--fin row-->
+                
+
+
+                
               
 
                         
