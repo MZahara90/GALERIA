@@ -154,14 +154,8 @@ const mainDiv = document.querySelector('.galeria');
                 const texto= boton.value.toLowerCase();
                 createCategoria(arrayTodo, texto);
               }
-
-
-
           }
-          
-
     }
-
 
     function createCategoria(array, texto){
       mainDiv.innerHTML = '';
@@ -204,12 +198,8 @@ const mainDiv = document.querySelector('.galeria');
           card.setAttribute("id",array[i].id);
           mainDiv.appendChild(card);
           }   
-
       }
-
     }
-
-
 
  const getCamisetas = "https://my-json-server.typicode.com/Xeadnor/ApiFalsa/galeria"
 
@@ -242,7 +232,6 @@ const mainDiv = document.querySelector('.galeria');
   
   const myPromise = request(getCamisetas)
   
-
   myPromise
     .then( function imprimirPosts(json) {
       const contenido=JSON.parse(json);
@@ -257,6 +246,7 @@ const mainDiv = document.querySelector('.galeria');
         const card = createCard(producto);
         card.setAttribute("id",listPosts[i].id);
         mainDiv.appendChild(card);
+        arrayProductos.push(producto);
       }    
 
     })
