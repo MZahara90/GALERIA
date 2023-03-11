@@ -62,12 +62,24 @@ const mainDiv = document.querySelector('.galeria');
   var btntodo= document.getElementById("todo");
   var buscador=document.getElementById("buscador");
 
+  var btnMarvelNavSuperior= document.getElementById("MARVEL1");
+  var btnDcNavSuperior= document.getElementById("DC1");
+  var btnGamingNavSuperior= document.getElementById("Gaming1");
+  var btnCineSeriesNavSuperior= document.getElementById("CineSeries1");
+  var btntodoNavSuperior= document.getElementById("todo1");
+
   btnMarvel.addEventListener("click", filtrarCategoria);
   btnDc.addEventListener("click", filtrarCategoria);
   btnGaming.addEventListener("click", filtrarCategoria);
   btnCineSeries.addEventListener("click", filtrarCategoria);
   btntodo.addEventListener("click", filtrarCategoria);
   buscador.addEventListener("keyup", filtrarCategoria);
+
+  btnMarvelNavSuperior.addEventListener("click", filtrarCategoria);
+  btnDcNavSuperior.addEventListener("click", filtrarCategoria);
+  btnGamingNavSuperior.addEventListener("click", filtrarCategoria);
+  btnCineSeriesNavSuperior.addEventListener("click", filtrarCategoria);
+  btntodoNavSuperior.addEventListener("click", filtrarCategoria);
 
 
     function filtrarCategoria(e){
@@ -113,28 +125,27 @@ const mainDiv = document.querySelector('.galeria');
             var info= JSON.parse(json);
             
 
-              if(boton.id=="MARVEL"){
-
+              if(boton.id=="MARVEL" || boton.id=="MARVEL1"  ){
                 var arrayMarvel= info[0].categorias[0].MARVEL;
                 
-                createCategoria(arrayMarvel);
+                createCategoria(arrayMarvel, null);
                       
-              }else if(boton.id=="DC"){
+              }else if(boton.id=="DC"|| boton.id=="DC1" ){
                 var arrayDC= info[0].categorias[0].DC;
                 
-                createCategoria(arrayDC);
+                createCategoria(arrayDC, null);
                 
-              }else if(boton.id=="Gaming"){
+              }else if(boton.id=="Gaming" || boton.id=="Gaming1" ){
                 var arrayGaming= info[0].categorias[0].Gaming;
                 
                 createCategoria(arrayGaming, null);
 
-              }else if(boton.id=="CineSeries"){
+              }else if(boton.id=="CineSeries" || boton.id=="CineSeries1"){
                 var arrayCineSeries= info[0].categorias[0].cineSeries;
                 
                 createCategoria(arrayCineSeries, null);
 
-              }else if(boton.id=="todo"){
+              }else if(boton.id=="todo" || boton.id=="todo"){
                 var arrayTodo= info[0].camisetas;
 
                 createCategoria(arrayTodo, null);
