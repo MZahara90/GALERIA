@@ -60,14 +60,17 @@ const mainDiv = document.querySelector('.galeria');
   var btnGaming= document.getElementById("Gaming");
   var btnCineSeries= document.getElementById("CineSeries");
   var btntodo= document.getElementById("todo");
+  var buscador=document.getElementById("buscador");
 
-  btnMarvel.addEventListener("click", mostrarCategoria);
-  btnDc.addEventListener("click", mostrarCategoria);
-  btnGaming.addEventListener("click", mostrarCategoria);
-  btnCineSeries.addEventListener("click", mostrarCategoria);
-  btntodo.addEventListener("click", mostrarCategoria);
+  btnMarvel.addEventListener("click", filtrarCategoria);
+  btnDc.addEventListener("click", filtrarCategoria);
+  btnGaming.addEventListener("click", filtrarCategoria);
+  btnCineSeries.addEventListener("click", filtrarCategoria);
+  btntodo.addEventListener("click", filtrarCategoria);
+  buscador.addEventListener("keyup", filtrarCategoria);
 
-    function mostrarCategoria(e){
+
+    function filtrarCategoria(e){
       const boton= e.target;
 
       var URL="https://my-json-server.typicode.com/Xeadnor/ApiFalsa/galeria"
@@ -124,17 +127,21 @@ const mainDiv = document.querySelector('.galeria');
               }else if(boton.id=="Gaming"){
                 var arrayGaming= info[0].categorias[0].Gaming;
                 
-                createCategoria(arrayGaming);
+                createCategoria(arrayGaming, null);
 
               }else if(boton.id=="CineSeries"){
                 var arrayCineSeries= info[0].categorias[0].cineSeries;
                 
-                createCategoria(arrayCineSeries);
+                createCategoria(arrayCineSeries, null);
 
-              }else{//mostrar todo
+              }else if(boton.id=="todo"){
                 var arrayTodo= info[0].camisetas;
 
-                createCategoria(arrayTodo);
+                createCategoria(arrayTodo, null);
+              }else{//entrada por buscador
+                var arrayTodo= info[0].camisetas;
+                const texto= boton.value.toLowerCase();
+                createCategoria(arrayTodo, texto);
               }
 
 
@@ -145,20 +152,49 @@ const mainDiv = document.querySelector('.galeria');
     }
 
 
-    function createCategoria(array){
+    function createCategoria(array, texto){
       mainDiv.innerHTML = '';
-      for (let i = 0; i < array.length; i++) {
-        var producto = new Producto();
-        producto.id = array[i].id;
-        producto.nombre = array[i].nombre;
-        producto.precio = array[i].precio;
-        producto.imagenURL = array[i].imagenURL;
-        producto.descripcion = array[i].descripcion;
-        const card = createCard(producto);
-        card.setAttribute("id",array[i].id);
-        mainDiv.appendChild(card);
-      }    
+      if(texto!==null){
 
+          for (let i = 0; i < array.length; i++) {
+            if(array[i].nombre.toLowerCase().indexOf(texto) !== -1){
+              var producto = new Producto();
+              producto.id = array[i].id;
+              producto.nombre = array[i].nombre;
+              producto.precio = array[i].precio;
+              producto.imagenURL = array[i].imagenURL;
+              producto.descripcion = array[i].descripcion;
+              const card = createCard(producto);
+              card.setAttribute("id",array[i].id);
+              mainDiv.appendChild(card);
+              } 
+          }
+         
+            if(mainDiv.childElementCount==0){
+              var espacio=document.createElement("p");
+              espacio.innerHTML="<br><br><br>"
+              var p= document.createElement("h5");
+              p.textContent= "No se ha encontrado nigún producto que coincida con la búsqueda..."
+              
+              mainDiv.appendChild(espacio);
+              mainDiv.appendChild(p);
+            }
+          
+      }else{
+
+        for (let i = 0; i < array.length; i++) {
+          var producto = new Producto();
+          producto.id = array[i].id;
+          producto.nombre = array[i].nombre;
+          producto.precio = array[i].precio;
+          producto.imagenURL = array[i].imagenURL;
+          producto.descripcion = array[i].descripcion;
+          const card = createCard(producto);
+          card.setAttribute("id",array[i].id);
+          mainDiv.appendChild(card);
+          }   
+
+      }
 
     }
 
